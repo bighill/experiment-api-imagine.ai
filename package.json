@@ -1,0 +1,84 @@
+{
+  "name": "experiment-api-imagine.ai",
+  "version": "0.0.0",
+  "scripts": {
+    "build-ts": "tsc && tsc-alias",
+    "build": "yarn run build-ts",
+    "debug": "yarn run build-ts && PORT=2222 yarn run serve-debug",
+    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
+    "serve-debug": "concurrently \"tsc -w\" \"tsc-alias -w\" \"nodemon --inspect dist/server/index.js\"",
+    "serve": "node dist/server/index.js",
+    "start": "yarn run build && NODE_ENV=production yarn run serve",
+    "test": "NODE_ENV=test jest --runInBand --verbose --passWithNoTests",
+    "coverage": "NODE_ENV=test jest --runInBand --verbose --collect-coverage --passWithNoTests"
+  },
+  "dependencies": {
+    "class-validator": "^0.13.1",
+    "cookie-parser": "~1.4.4",
+    "dayjs": "^1.11.1",
+    "dotenv": "^16.0.0",
+    "express": "~4.18.1",
+    "express-formidable": "^1.2.0",
+    "express-session": "^1.17.1",
+    "express-validation": "^4.0.1",
+    "http-errors": "~2.0.0",
+    "http-status": "^1.5.1",
+    "morgan": "~1.10.0",
+    "tslib": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/async": "3.2.12",
+    "@types/body-parser": "1.19.2",
+    "@types/concurrently": "7.0.0",
+    "@types/errorhandler": "1.5.0",
+    "@types/eslint": "8.4.1",
+    "@types/express": "4.17.13",
+    "@types/jest": "27.4.1",
+    "@types/node": "^17.0.30",
+    "@types/request": "2.48.8",
+    "@types/request-promise": "4.1.48",
+    "@types/supertest": "2.0.12",
+    "@types/validator": "^13.7.2",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "concurrently": "7.1.0",
+    "debug": "^4.3.4",
+    "eslint": "8.14.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "faker": "^6.6.6",
+    "jest": "26.6.3",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.6.2",
+    "reflect-metadata": "^0.1.13",
+    "supertest": "^6.1.1",
+    "ts-jest": "26.5.6",
+    "ts-node": "^10.0.0",
+    "tsc-alias": "^1.6.7",
+    "typescript": "4.6.4"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "collectCoverageFrom": [
+      "src/**",
+      "!**/tests/**",
+      "!**/utils/**",
+      "!**/**test**",
+      "!**/middlewares/**"
+    ],
+    "testPathIgnorePatterns": [
+      "/.imagine/",
+      "<rootDir>/dist/"
+    ]
+  }
+}
